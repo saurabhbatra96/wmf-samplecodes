@@ -5,7 +5,7 @@ class Extractor:
 	
 	def __init__(self, addr):
 		self.dataFile = addr
-		self.basedata = np.genfromtxt(addr, delimiter=',', skip_header=1, dtype=None, encoding=None)
+		self.basedata = np.genfromtxt(addr, delimiter=',', skip_header=1, dtype="f8", encoding=None)
 
 	def getbasedata(self):
 		return self.basedata
@@ -28,7 +28,7 @@ class Extractor:
 		frauds = []
 		nonfrauds = []
 		for record in self.basedata:
-			if record[-1] == "\"0\"":
+			if record[-1] == 0:
 				nonfrauds.append(record)
 			else:
 				frauds.append(record)
