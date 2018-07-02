@@ -17,12 +17,14 @@ class Extractor:
 		addr = 'data/'+fname
 		np.save(addr, self.data)
 
+	def savebasedata(self, fname):
+		addr = 'data/'+fname
+		np.save(addr, self.basedata)
+
 	@staticmethod
 	def loaddata(fname):
 		addr = 'data/'+fname+'.npy'
 		return np.load(addr)
-
-
 
 	def fnfsplit(self, fraudpercent):
 		frauds = []

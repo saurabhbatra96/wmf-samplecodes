@@ -23,7 +23,7 @@ for train_index, test_index in skf.split(X, y):
 	y_train, y_test = np.array(y[train_index]), np.array(y[test_index])
 
 	# Classification
-	clf = RandomForestClassifier()
+	clf = RandomForestClassifier(bootstrap=False, min_samples_leaf=1, n_estimators=400, max_features='auto', min_samples_split=5, max_depth=90)
 	clf.fit(X_train, y_train)
 	y_score = clf.predict_proba(X_test)[:,1]
 
@@ -40,7 +40,7 @@ precision, recall, thresholds = precision_recall_curve(y_tests, y_scores)
 
 graph = plt.figure()
 axes = graph.add_axes([0.1,0.1,0.75,0.75])
-axes.set_title("Random Forest Default Precision vs Recall")
+axes.set_title("Random Forest RandomSearchCV Precision vs Recall")
 axes.set_xlabel("Threshold")
 
 axes.plot(thresholds, recall[:-1], "#00CFFF", label="Recall")
@@ -48,5 +48,5 @@ axes.plot(thresholds, precision[:-1], "#879908", label="Precision")
 # axes.plot(recall, precision, "#00CFFF", label="Prec vs Recall")
 
 axes.legend(loc="center left")
-# graph.savefig("plots/rf-default.png")
+graph.savefig("plots/rf-rscv.png")
 
