@@ -2,3 +2,5 @@ numpy
 scipy
 sklearn
 matplotlib
+lime
+pickle
